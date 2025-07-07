@@ -10,7 +10,8 @@ docker-laravel12/
 │   ├── php/
 │   │   └── Dockerfile
 │   └── nginx/
-│       └── default.conf
+│       └── conf.d
+│   　　　  └── default.conf
 └── docker-compose.yml
 ```
 
