@@ -29,11 +29,12 @@ docker-laravel12/
 ```bash
 git clone https://github.com/ochiai-a/laravel-test-app.git
 cd laravel-test-app
-2. Laravel プロジェクトの作成（まだインストールしていない場合）
-bash
-docker compose run --rm app composer create-project laravel/laravel .
+2. Laravel プロジェクトの作成
+docker-compose run --rm app bash
+コンテナ内で以下を実行
+composer create-project laravel/laravel:^12.0 .
+exit
 3. .env ファイルの作成と編集
-bash
 cp .env.example .env
 .env 内の以下の項目を確認・修正してください：
 
@@ -45,13 +46,14 @@ DB_PASSWORD=secret
 4. コンテナの起動
 bash
 docker compose up -d --build
+docker compose exec app bash
+再度コンテナ内に入って以下を実行
+chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
+chmod 666 database/database.sqlite
+exit
 5. Laravel アプリにアクセス
 ブラウザで以下にアクセスしてください：
 
 http://localhost:8001
 ※ docker-compose.yml で 8001:80 にポートマッピングされています。
-
-🧪 よくあるトラブルと対処法
-このサイトにアクセスできません と表示される場合 → default.conf が正しくマウントされているか、Nginx の設定が正しいか確認してください。
-
-Laravel の public ディレクトリが表示されない場合 → root /var/www/public; の設定と Laravel のインストール先を確認してください。
