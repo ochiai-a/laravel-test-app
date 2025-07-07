@@ -5,7 +5,7 @@
 ## 📁 ディレクトリ構成
 
 ```plaintext
-docker-laravel12/
+laravel-test-app/
 ├── docker/
 │   ├── php/
 │   │   └── Dockerfile
