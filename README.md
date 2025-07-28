@@ -23,6 +23,20 @@ laravel-test-app/
 - MySQL 8.0
 - Docker / Docker Compose
 
+# 🐳 Docker × Laravel ハンズオン
+
+## 📦 事前準備
+
+以下のソフトウェアがインストールされていることを確認してください：
+
+- Docker Desktop  
+  - [Windows 向けセットアップ手順](https://qiita.com/zembutsu/items/a98f6f25ef47c04893b3)  
+  - [Mac 向けセットアップ手順](https://qiita.com/cleyera_f/items/bdd3d33f13527604a663)
+- Git
+- VS Code（推奨）  
+  - 推奨拡張機能：`Docker`, `PHP Intelephense`
+
+
 ## 🛠 セットアップ手順
 
 ### 1. リポジトリをクローン
@@ -57,4 +71,5 @@ exit
 ブラウザで以下にアクセスしてください：
 
 http://localhost:8001
+Laravel の初期画面が表示されれば成功 🎉
 ※ docker-compose.yml で 8001:80 にポートマッピングされています。
