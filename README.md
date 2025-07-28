@@ -97,17 +97,11 @@ http://localhost:8001
 Laravel の初期画面が表示されれば成功 🎉　
 ※ docker-compose.yml で 8001:80 にポートマッピングされています。
 
-　
+　　
+---
+
 
 # 🚀 Laravel ハンズオン①：「Hello Laravel!」を表示しよう
-
-## 🧱 事前準備
-
-- Docker Desktop のインストール  
-- Laravel 12 のインストール  
-- VS Code 推奨（拡張機能：Docker, PHP Intelephense）
-
----
 ## 🛠 セットアップ手順
 
 ### 🏁 Step 1: `/` に「Hello Laravel!」を表示しよう
@@ -115,7 +109,6 @@ Laravel の初期画面が表示されれば成功 🎉　
 #### 🎯 目標
 
 Laravel アプリのトップページ（`http://localhost:8001/`）に「Hello Laravel!」という文字列を表示します。
-
 ---
 
 ### 🧭 手順
@@ -166,7 +159,7 @@ Route::get('/hello', [HelloController::class, 'index']);
 > 今回の場合はGETリクエストで「http://localhost:8001/hello」にアクセスした場合、`hello.blade.php` というviewファイルを返す（表示する）という意味になっています。
 
 ### ✅ 4. ビューを作成する
-``resources/views/```ディレクトリに```hello.blade.php```というファイルを作成し、以下の内容を記述します。
+```resources/views/```ディレクトリに```hello.blade.php```というファイルを作成し、以下の内容を記述します。
 ```php
 <!-- resources/views/hello.blade.php -->
 <!DOCTYPE html>
@@ -190,3 +183,110 @@ Route::get('/hello', [HelloController::class, 'index']);
 `http://localhost:8001`
 
 「Hello Laravel!」と表示されていれば成功です 🎉
+
+---
+
+  
+# 🚀 Laravelハンズオン②：ページを切り替えてみよう！
+## 🛠 セットアップ手順
+
+### 🏁 Step 2: Bladeのレイアウトやコントローラの動的ルーティングを使ってみよう！
+
+#### 🎯 目標
+
+任意のURL（例：`/page/about` や `/page/contact`）にアクセスすると、それぞれのページが Blade レイアウト付きで表示されるようにする。
+
+
+### 🧭 手順
+
+### ✅ 1. レイアウトファイルを作成する
+
+`resources/views/layouts/app.blade.php`を作成します。
+```php
+<!-- layouts/app.blade.php -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>@yield('title')</title>
+</head>
+<body>
+    <header>
+        <h1>My Laravel Site</h1>
+    </header>
+
+    <main>
+        @yield('content')
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Laravel Hands-on</p>
+    </footer>
+</body>
+</html>
+```
+>💡 `resources/views/` の下に更に`layouts` フォルダを作り、`app.blade.php`ファイルを作ります。
+
+#### 🧠 Blade のレイアウトとは？
+
+Bladeでは、「共通レイアウト（テンプレート）」と「個別ページの内容」を分けて記述することで、**HTMLを効率よく再利用**できます。
+
+🧩 レイアウト：Webページの「骨組み」（共通枠）  
+🧩 セクション：骨組みに「はめこむ中身」
+
+#### 🛠 `@yield` と `@section` の役割
+
+| 構文 | 役割 | 書く場所 |
+| --- | --- | --- |
+| `@yield('名前')` | 中身の「差し込み口」を作る | レイアウトファイル（layouts） |
+| `@section('名前')` | 差し込む中身を書く | 個別ページ（各ビュー） |
+| `@extends('レイアウトファイル')` | どのレイアウトを使うか宣言 | 個別ページの先頭 |
+
+### ✅ 2. 動的ルートを設定する
+`routes/web.php` に以下を追加します。
+```php
+use Illuminate\Support\Facades\Route;
+
+……
+＜中略＞
+……
+
+Route::get('/page/{name}', function ($name) {
+    if (view()->exists("pages.$name")) {
+        return view("pages.$name")->with('title', ucfirst($name));
+    }
+    abort(404);
+});
+```
+> 💡 pages/{name}.blade.php が存在する場合のみ表示。なければ 404 を返します。
+
+### ✅ 3. ページビューを作成する
+例1. ：`resources/views/pages/about.blade.php`
+```php
+@extends('layouts.app')
+
+@section('title', $title)
+
+@section('content')
+    <h2>About Page</h2>
+    <p>This is the about page content.</p>
+@endsection
+```
+例2. ：`resources/views/pages/contact.blade.php`
+```php
+@extends('layouts.app')
+
+@section('title', $title)
+
+@section('content')
+    <h2>Contact Page</h2>
+    <p>You can reach us at contact@example.com</p>
+@endsection
+```
+
+### ✅ 4. ブラウザで確認する
+- `http://localhost:8001/page/about`
+- `http://localhost:8001/page/contact`
+
+それぞれのページがレイアウト付きで表示されれば成功です 🎉
+
