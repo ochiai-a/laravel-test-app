@@ -23,13 +23,13 @@ laravel-test-app/
 - MySQL 8.0
 - Docker / Docker Compose
 
-
-
+　
+　
 # 🐳 Docker × Laravel ハンズオン
 
 ## 📦 事前準備
 
-以下のソフトウェアがインストールされていることを確認してください：
+以下のソフトウェアがインストールされていることを確認してください。
 
 - Docker Desktop  
   - [Windows 向けセットアップ手順](https://qiita.com/zembutsu/items/a98f6f25ef47c04893b3)  
@@ -94,5 +94,59 @@ exit
 ブラウザで以下にアクセスしてください。
 
 http://localhost:8001
-Laravel の初期画面が表示されれば成功 🎉
+Laravel の初期画面が表示されれば成功 🎉　
 ※ docker-compose.yml で 8001:80 にポートマッピングされています。
+
+　
+
+# 🚀 Laravel ハンズオン①：「Hello Laravel!」を表示しよう
+ 
+## 🛠 セットアップ手順
+
+# 🚀 Docker × Laravel 12 環境構築ハンズオン
+
+## 🧱 事前準備
+
+- Docker Desktop のインストール  
+- Laravel 12 のインストール  
+- VS Code 推奨（拡張機能：Docker, PHP Intelephense）
+
+---
+
+### 🏁 Step 1: `/` に「Hello Laravel!」を表示しよう
+
+#### 🎯 目標
+
+Laravel アプリのトップページ（`http://localhost:8001/`）に「Hello Laravel!」という文字列を表示します。
+
+---
+
+### 🧭 手順
+
+### ✅ 1. コントローラを作成する
+
+```bash
+docker compose exec app php artisan make:controller HelloController
+```
+```app/Http/Controllers/HelloController.php```が生成されます。
+
+### ✅ 2. コントローラにアクションを追加する
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class HelloController extends Controller
+{
+    public function index()
+    {
+        return view('hello');
+    }
+}
+```
+index() メソッドが /hello に対応する処理を記述します。
+
+### ✅ 3. ルートを定義する
+```routes/web.php```を開いて、以下のように編集します。
