@@ -100,10 +100,6 @@ Laravel の初期画面が表示されれば成功 🎉　
 　
 
 # 🚀 Laravel ハンズオン①：「Hello Laravel!」を表示しよう
- 
-## 🛠 セットアップ手順
-
-# 🚀 Docker × Laravel 12 環境構築ハンズオン
 
 ## 🧱 事前準備
 
@@ -112,6 +108,7 @@ Laravel の初期画面が表示されれば成功 🎉　
 - VS Code 推奨（拡張機能：Docker, PHP Intelephense）
 
 ---
+## 🛠 セットアップ手順
 
 ### 🏁 Step 1: `/` に「Hello Laravel!」を表示しよう
 
@@ -150,3 +147,46 @@ index() メソッドが /hello に対応する処理を記述します。
 
 ### ✅ 3. ルートを定義する
 ```routes/web.php```を開いて、以下のように編集します。
+```php
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HelloController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/hello', [HelloController::class, 'index']);
+```
+> ```use``` 文でコントローラを読み込み、```[クラス名, メソッド名]``` 形式でルーティングします。
+> 
+
+> 💡 Route::get() は「GETリクエストでアクセスされたときにどう処理するか」を定義する関数です。
+> 今回の場合はGETリクエストで「http://localhost:8001/hello」にアクセスした場合、`hello.blade.php` というviewファイルを返す（表示する）という意味になっています。
+
+### ✅ 4. ビューを作成する
+``resources/views/```ディレクトリに```hello.blade.php```というファイルを作成し、以下の内容を記述します。
+```php
+<!-- resources/views/hello.blade.php -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Laravel</title>
+</head>
+<body>
+    <h1>Hello Laravel!</h1>
+</body>
+</html>
+```
+
+>💡 ◯◯.blade.php は Laravel のテンプレートエンジン「Blade」のファイル拡張子です。
+> HTML/CSSとほぼ同じような書き方ができます。
+
+### ✅ 5. ブラウザで確認
+ブラウザで以下のURLにアクセスします。
+
+`http://localhost:8001`
+
+「Hello Laravel!」と表示されていれば成功です 🎉
