@@ -51,7 +51,7 @@ cd laravel-test-app
 ### 2. Laravel プロジェクトの作成
 
 ```bash
-docker-compose run --rm app bash
+docker compose run --rm app bash
 ```
 
 コンテナ内で以下を実行
