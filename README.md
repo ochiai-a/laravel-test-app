@@ -143,7 +143,7 @@ Route::get('/hello', [HelloController::class, 'index']);
 > 💡 Route::get() は「GETリクエストでアクセスされたときにどう処理するか」を定義する関数です。
 > 今回の場合はGETリクエストで「http://localhost:8001/hello」 にアクセスした場合、`hello.blade.php` というviewファイルを返す（表示する）という意味になっています。
 
-http://localhost/8001/hello にアクセスしてみると……？
+http://localhost:8001/hello にアクセスしてみると……？
 
 ### ✅ 4. ビューを作成する
 ```resources/views/```ディレクトリに```hello.blade.php```というファイルを作成し、以下の内容を記述します。
@@ -167,7 +167,7 @@ http://localhost/8001/hello にアクセスしてみると……？
 ### ✅ 5. ブラウザで確認
 ブラウザで以下のURLにアクセスします。
 
-http://localhost:8001/hello
+http://localhost:8001/hello 
 
 「Hello Laravel!」と表示されていれば成功です 🎉
 
