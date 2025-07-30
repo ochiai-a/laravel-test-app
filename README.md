@@ -238,7 +238,7 @@ use Illuminate\Support\Facades\Route;
 ＜中略＞
 ……
 
-Route::get('/page/{name}', function ($name) {
+Route::get('/pages/{name}', function ($name) {
     if (view()->exists("pages.$name")) {
         return view("pages.$name")->with('title', ucfirst($name));
     }
