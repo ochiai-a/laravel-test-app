@@ -65,16 +65,6 @@ exit
 cp .env.example .env
 ```
 
-.env 内の以下の項目を確認・修正してください。
-
-```bash
-DB_HOST=db
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=laravel
-DB_PASSWORD=secret
-```
-
 ### 4. コンテナの起動
 
 ```bash
