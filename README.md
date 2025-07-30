@@ -60,12 +60,7 @@ composer create-project laravel/laravel:^12.0 .
 exit
 ```
 
-### 3. .env ファイルの作成と編集
-```bash
-cp .env.example .env
-```
-
-### 4. コンテナの起動
+### 3. コンテナの起動
 
 ```bash
 docker compose up -d --build
@@ -80,7 +75,7 @@ chmod 666 database/database.sqlite
 exit
 ```
 
-### 5. Laravel アプリにアクセス
+### . Laravel アプリにアクセス
 ブラウザで以下にアクセスしてください。
 
 http://localhost:8001
