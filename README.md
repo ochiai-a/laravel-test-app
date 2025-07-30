@@ -89,11 +89,11 @@ Laravel の初期画面が表示されれば成功 🎉　
 # 🚀 Laravel ハンズオン①：「Hello Laravel!」を表示しよう
 ## 🛠 セットアップ手順
 
-### 🏁 Step 1: `/` に「Hello Laravel!」を表示しよう
+### 🏁 Step 1: `/hello` に「Hello Laravel!」を表示しよう
 
 #### 🎯 目標
 
-Laravel アプリのトップページ（`http://localhost:8001/`）に「Hello Laravel!」という文字列を表示します。
+Laravel アプリのトップページ（`http://localhost:8001/hello`）に「Hello Laravel!」という文字列を表示します。
 ---
 
 ### 🧭 手順
@@ -167,7 +167,7 @@ http://localhost/8001 にアクセスしてみると……？
 ### ✅ 5. ブラウザで確認
 ブラウザで以下のURLにアクセスします。
 
-http://localhost:8001 
+http://localhost:8001/hello
 
 「Hello Laravel!」と表示されていれば成功です 🎉
 
